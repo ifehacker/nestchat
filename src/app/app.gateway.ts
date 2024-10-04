@@ -21,11 +21,10 @@ export class AppGateway
   private logger: Logger = new Logger('AppGateway');
 
   @SubscribeMessage('msgToServer')
-  handleMessage(client: Socket, payload: any): void {
+  handleMessage(client: Socket, payload: string): void {
     this.server.emit('msgToClient', payload);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   afterInit(server: Server) {
     this.logger.log('Init');
   }
@@ -34,7 +33,6 @@ export class AppGateway
     this.logger.log(`Client disconnected: ${client.id}`);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleConnection(client: Socket, ...args: any[]) {
     this.logger.log(`Client disconnected: ${client.id}`);
   }
